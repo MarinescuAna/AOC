@@ -26,10 +26,22 @@ namespace AdventOfCode2021
         }
         public abstract void Part1();
         public abstract void Part2();
-        public void CallParts()
+        public void CallParts(int callPart = 3)
         {
-            Part1();
-            Part2();
+            if (callPart == 1)
+            {
+                Part1();
+            }
+            else if (callPart == 2)
+            {
+                Part2();
+            }
+            else
+            {
+                Part1();
+                Part2();
+            }
+
         }
         public abstract void ReadInput();
     }

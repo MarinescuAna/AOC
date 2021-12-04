@@ -9,6 +9,6 @@ namespace AdventOfCode2021
         void Part1();
         void Part2();
         void ReadInput();
-        void CallParts();
+        void CallParts(int callPart = 3);
     }
 }
