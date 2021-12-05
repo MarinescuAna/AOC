@@ -73,25 +73,13 @@ namespace AdventOfCode2021.Problems
             }
             return false;
         }
-        public void displayGrid()
-        {
-            Console.WriteLine('\n');
-            foreach (var row in grid)
-            {
-                for (var i = 0; i < 5; i++)
-                {
-                    Console.Write(row[i].marked ? $" [{row[i].number}]" : $" {row[i].number}");
-                }
-                Console.WriteLine();
-            }
-        }
     }
 
     public class Day4 : BaseDay
     {
         private List<int> drawedNumbers;
         private List<Board> boards;
-        public Day4() : base(4, "")
+        public Day4() : base(4, "Giant Squid")
         {
             boards = new List<Board>();
             drawedNumbers = new List<int>();
