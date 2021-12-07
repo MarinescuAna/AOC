@@ -9,7 +9,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            new Day6().CallParts(3);
+            new Day7().CallParts(3);
         }
     
     }
