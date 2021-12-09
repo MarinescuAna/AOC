@@ -8,9 +8,11 @@ namespace AdventOfCode2021.Problems
     public class Day9 : BaseDay
     {
         private List<int[]> Heightmap;
+        private List<(int i, int j)> lowerPoints;
         public Day9() : base(9, "Smoke Basin")
         {
             Heightmap = new List<int[]>();
+            lowerPoints = new List<(int i, int j)>();
             ReadInput();
         }
         private bool IsGreater(int line, int column)
@@ -137,7 +139,7 @@ namespace AdventOfCode2021.Problems
                 {
                     if (IsGreater(i, j))
                     {
-
+                        lowerPoints.Add((i, j));
                         sum += (Heightmap[i][j] + 1);
                     }
                 }
@@ -147,52 +149,23 @@ namespace AdventOfCode2021.Problems
 
         private int DiscoverBasins(int line, int column)
         {
-            var size = 0;
-            while (Heightmap[line][column]!=9)
+            if (line < 0 || column < 0 || line > Heightmap.Count - 1 || column > Heightmap[0].Length - 1 || Heightmap[line][column] == 9)
             {
-                Heightmap[line][column] = 9;
-                size++;
-                column++;
-                if (column == Heightmap[line].Length || Heightmap[line][column]==9)
-                {
-                    column = 0;
-                    line++;
-                    if (line == Heightmap.Count)
-                    {
-                        break;
-                    }
-                }
+                return 0;
             }
-            return size;
 
-        }
-
-        public void DisplayMatrix()
-        {
-            
-            for (var i = 0; i < Heightmap.Count; i++)
-            {
-                Console.WriteLine();
-                for (var j = 0; j < Heightmap[i].Length; j++)
-                {
-                    Console.Write(Heightmap[i][j]);
-                }
-            }
+            Heightmap[line][column] = 9;
+            return 1 + DiscoverBasins(line, column + 1) + DiscoverBasins(line, column - 1) + DiscoverBasins(line + 1, column) + DiscoverBasins(line - 1, column);
         }
         public override void Part2()
         {
-            var sum = 0l;
-            for (var i = 0; i < Heightmap.Count; i++)
+            var sizes = new List<int>();
+            foreach (var point in lowerPoints)
             {
-                for (var j = 0; j < Heightmap[i].Length; j++)
-                {
-                    if (Heightmap[i][j] != 9)
-                    {
-                        Console.WriteLine(DiscoverBasins(i, j));
-                        DisplayMatrix();
-                    }
-                }
+                sizes.Add(DiscoverBasins(point.i, point.j));
             }
+            sizes.Sort();
+            Display((sizes[sizes.Count - 1] * sizes[sizes.Count - 2] * sizes[sizes.Count - 3]).ToString(), false);
         }
         public override void ReadInput()
         {
