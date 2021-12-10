@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AdventOfCode2021.Problems
@@ -63,12 +64,7 @@ namespace AdventOfCode2021.Problems
 
         public override void ReadInput()
         {
-
-            while ((line = StreamReader.ReadLine()) != null)
-            {
-                var splitVal = line.Split(" ");
-                input.Add(( splitVal[0], int.Parse(splitVal[1])));
-            }
+            input = StreamReader.ReadToEnd().Split(Environment.NewLine).Select(u => (u.Split(" ")[0], int.Parse(u.Split(" ")[1]))).ToList();
         }
     }
 }

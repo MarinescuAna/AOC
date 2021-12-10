@@ -164,10 +164,7 @@ namespace AdventOfCode2021.Problems
 
         public override void ReadInput()
         {
-            while ((line = StreamReader.ReadLine()) != null)
-            {
-                input.Add(line);
-            }
+            input = StreamReader.ReadToEnd().Split(Environment.NewLine).ToList();
         }
     }
 }

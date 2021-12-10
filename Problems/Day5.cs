@@ -30,7 +30,7 @@ namespace AdventOfCode2021.Problems
                 increment = -1;
                 expression = (x, y) => x >= y;
             }
-            for (int i = x; expression(i,y); i+=increment)
+            for (int i = x; expression(i, y); i += increment)
             {
                 grid[i][i]++;
             }
@@ -84,7 +84,7 @@ namespace AdventOfCode2021.Problems
                 expression = (x, y) => x >= y;
             }
 
-            for (int i = y1; expression(i,y2); i+=increment)
+            for (int i = y1; expression(i, y2); i += increment)
             {
                 grid[x][i]++;
             }
@@ -103,7 +103,7 @@ namespace AdventOfCode2021.Problems
                 increment = -1;
                 expression = (x, y) => x >= y;
             }
-            for (int i = x1; expression(i,x2); i+=increment)
+            for (int i = x1; expression(i, x2); i += increment)
             {
                 grid[i][y]++;
             }
@@ -194,16 +194,13 @@ namespace AdventOfCode2021.Problems
         }
         public override void ReadInput()
         {
-            while ((line = StreamReader.ReadLine()) != null)
-            {
-                var split1 = line.Split(" -> ");
-                points.Add((
-                    ConvertToInt(split1[0].Split(",")[0]),
-                    ConvertToInt(split1[0].Split(",")[1]),
-                    ConvertToInt(split1[1].Split(",")[0]),
-                    ConvertToInt(split1[1].Split(",")[1])
-                    ));
-            }
+            points = StreamReader.ReadToEnd().Split(Environment.NewLine).Select(u =>
+                    (
+                        ConvertToInt(u.Split(" -> ")[0].Split(",")[0]),
+                        ConvertToInt(u.Split(" -> ")[0].Split(",")[1]),
+                        ConvertToInt(u.Split(" -> ")[1].Split(",")[0]),
+                        ConvertToInt(u.Split(" -> ")[1].Split(",")[1])
+                    )).ToList();
         }
     }
 }

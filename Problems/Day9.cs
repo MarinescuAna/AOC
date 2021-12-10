@@ -169,10 +169,7 @@ namespace AdventOfCode2021.Problems
         }
         public override void ReadInput()
         {
-            while ((line = StreamReader.ReadLine()) != null)
-            {
-                Heightmap.Add(line.Trim().Select(u => int.Parse(u.ToString())).ToArray());
-            }
+            Heightmap = StreamReader.ReadToEnd().Split(Environment.NewLine).Select(u => u.Trim().Select(u => int.Parse(u.ToString())).ToArray()).ToList();
         }
     }
 }
