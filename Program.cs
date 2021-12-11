@@ -10,7 +10,7 @@ namespace AdventOfCode2021
         static void Main(string[] args)
         {
             //new Day5().CallParts(2);//call the parts one by one because
-            new Day1().CallParts(3);
+            new Day11().CallParts(3);
         }
     
     }
