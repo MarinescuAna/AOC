@@ -9,7 +9,7 @@ namespace AdventOfCode2021.Problems
     {
         private List<List<int>> matrix = new List<List<int>>();
         private (int, int)[] coordonates = {(1,0),(0,1),(-1,0),(0,-1)};
-        public Day15() : base(15, "")
+        public Day15() : base(15, "Chiton")
         {
             ReadInput();
         }
@@ -65,7 +65,7 @@ namespace AdventOfCode2021.Problems
         }
         public override void Part1()
         {
-          //  Display(LowestRisk().ToString(), true);
+            Display(LowestRisk().ToString(), true);
         }
 
         public override void Part2()
