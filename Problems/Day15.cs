@@ -9,7 +9,7 @@ namespace AdventOfCode2021.Problems
     {
         private List<List<int>> matrix = new List<List<int>>();
         private (int, int)[] coordonates = {(1,0),(0,1),(-1,0),(0,-1)};
-        public Day15() : base(15, "")
+        public Day15() : base(15, "Chiton")
         {
             ReadInput();
         }
@@ -72,18 +72,34 @@ namespace AdventOfCode2021.Problems
         {
             var oldDimentionsLine = matrix.Count();
             var oldDimentionsColumns = matrix[0].Count();
-            for(var step = 1; step <= 5; step++)
+            for(var step = 0; step < 4; step++)
             {
-                for(var i = 0; i < oldDimentionsLine; i++)
+                for (var i = 0; i < oldDimentionsLine; i++)
                 {
-                    for(var j = 0; j < oldDimentionsColumns; j++)
+                    var newLine = new List<int>();
+                    for (var j = 0; j < oldDimentionsColumns; j++)
                     {
-                        //matrix[i*step]
+                        newLine.Add(matrix[oldDimentionsLine * step + i][j] + 1 == 10 ? 1 : matrix[oldDimentionsLine * step + i][j] + 1);
                     }
+                    matrix.Add(newLine);
                 }
+               
             }
-        }
+            for (var step = 0; step < 4; step++)
+            {
+                for (var i = 0; i < oldDimentionsColumns; i++)
+                {
+                    for (var j = 0; j < matrix.Count(); j++)
+                    {
+                        matrix[j].Add(matrix[j][oldDimentionsLine * step + i] + 1 == 10 ? 1 : matrix[j][oldDimentionsLine * step + i] + 1);
+                    
+                    }
 
+                }
+
+            }
+            Display(LowestRisk().ToString(), false);
+        }
         public override void ReadInput()
         {
             matrix = StreamReader.ReadToEnd().Split(Environment.NewLine).Select(u => u.Select(t => int.Parse(t.ToString())).ToList()).ToList();
